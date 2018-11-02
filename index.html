@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document</title>
+  <link href="./index_files/bootstrap.min.css" rel="stylesheet">
+  <style>
+  	body{
+		background:url("./img/101.jpg") no-repeat center center fixed;
+	
+		background-size:cover;
+	}
+	#login{
+		padding:30px;
+		border:1px solid #ddd;
+		border-radius:10px;
+		box-shadow: 6px 9px 12px -2px rgba(206, 198, 198, 0.55);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background-color:rgba(255,255,255,0.6);
+	}
+	.tooltip{
+		white-space:nowrap;
+	}
+	@media screen and (max-width:600px){
+		body{background:url("./img/22.jpg");}
+		#login{width:80%;}
+	}
+  </style>
+ </head>
+ <body>
+	<div id="login">
+		  <div class="form-group">
+			<label for="exampleInputEmail1">UserName</label>
+			<input type="text" class="form-control" id="exampleInputEmail1" placeholder="用户名" data-toggle="tooltip" data-placement="bottom" title="Tooltip on right">
+		  </div>
+		  <div class="form-group">
+			<label for="exampleInputPassword1">Password</label>
+			<input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码" data-toggle="tooltip" data-placement="bottom" title="Tooltip on right">
+		  </div>
+		  <div class="checkbox">
+			<label>
+			  <input type="checkbox"> Check me out
+			</label>
+		  </div>
+		  <button type="submit" class="btn btn-danger pull-right">Submit</button>
+	</div>
+	
+	<script src="./index_files/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="./index_files/bootstrap.min.js"></script>
+	<script>
+	
+		$(function () {
+			var submit=document.getElementsByTagName("button")[0];
+			var uname=document.getElementsByClassName("form-control")[0];
+			var pword=document.getElementsByClassName("form-control")[1];
+			submit.addEventListener("click",function(){
+				if(uname.value!=="admin"){
+					uname.title="用户名不正确";
+					$('#exampleInputEmail1').tooltip("show");
+					return;
+
+				}
+				if(pword.value!=="123"){
+					pword.title="密码不正确";
+					$('#exampleInputPassword1').tooltip("show");
+					return;
+				}
+				alert("登陆成功");
+				window.location.href="./contentList.html";
+			});
+
+		  
+		})
+	</script>
+ </body>
+</html>

@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document</title>
+  <link href="./index_files/bootstrap.min.css" rel="stylesheet">
+  <title>ContentList</title>
+  <style>
+	body {font-family: "Lato", sans-serif;}
+  	div{box-sizing:border-box;}
+	#vertical-tabs{
+		width:100%;
+		margin:auto;
+		overflow:hidden;
+	}
+	.tabLinks{
+		width:100%;
+		height:46px;
+		float:left;
+	}
+	.tabContents{
+		width:100%;height:100%;
+		float:left;
+		background-color:dodgerblue;
+	}
+	.tabLinks a{
+		display:inline-block;
+		background-color:#f1f1f1;
+		width:20%;
+		text-align:center;
+		padding:15px 10px;
+		transition: 0.3s;
+		line-height:16px;
+		border-radius:10px;
+		font-size:16px;
+		margin:0 -2px;
+	}
+	.tabLinks a:hover{
+		background-color:#ddd;
+		text-decoration:none;
+	}
+	.tabContents>div{
+		display:none;
+		padding:15px 0;
+		
+	}
+	.tabLinks a.active{background-color:#999;color:#fff;}
+	@media screen and (max-width:768px){
+		.container,.container .jumbotron{padding-right: 0px; padding-left: 0px;padding-top:0px;}
+	}
+	#go-top{background-color:#ddd;width:40px;position:fixed;bottom:10px;right:10px;display:none;}
+	#go-top .text{
+		display:block;font-size:10px;margin-top:-10px;color:white;padding-left:5px;
+	}
+	#go-top .glyphicon-menu-up{
+		font-size:40px;
+	}
+	#go-top:hover .glyphicon-menu-up{color:red;}
+	#go-top:hover .text{color:green;}
+  </style>
+ </head>
+ <body>
+	<div class="container">
+		<div class="jumbotron" style="background-color:white;">
+			<div id="vertical-tabs">
+				<div class="tabLinks">
+					<a class="active">文章</a>
+					<a>笔记</a>
+					<a>图片</a>
+					<a>网站</a>
+					<a>关于</a>
+				</div>
+				<div class="tabContents">
+					<div style="display:block;">
+						<div class="panel panel-primary" onclick="window.location.href='https://www.cnblogs.com/lizhenlin/p/5628605.html';" style="cursor:pointer;" onmouseover="this.style.opacity=0.9;" onmouseout="this.style.opacity=1;">
+						  <div class="panel-heading">
+							js点击button按钮跳转到页面代码
+						  </div>
+						  <div class="panel-body">在网页中button按钮不具备a标签的属性了，如果我们要给button 按钮增加跳转事件我们可以在它的确onclick事件上点击跳转js来实现，下面我来给大家介绍一些常用的方法。
+						  
+						  </div>
+						  <div class="panel-footer" style="overflow:hidden">
+						  来自：<small>https://www.cnblogs.com/lizhenlin/p/5628605.html</small>
+						  <span style="float:right">
+						  时间：<small>2018-10-31 18:35</small>
+						  <span>
+						  </div>
+						</div>
+						<div class="panel panel-info">
+						  <div class="panel-heading">Panel heading without title</div>
+						  <div class="panel-body">
+							Panel content
+						  </div>
+						</div>
+						<div class="panel panel-primary">
+						  <div class="panel-heading">
+							Panel content
+						  </div>
+						  <div class="panel-body">Panel footer</div>
+						</div>
+						<div class="panel panel-info">
+						  <div class="panel-heading">Panel heading without title</div>
+						  <div class="panel-body">
+							Panel content
+						  </div>
+						</div>
+					</div>
+					<div>
+						<div class="embed-responsive embed-responsive-16by9" >
+						  <iframe class="embed-responsive-item" src="./note.html"></iframe>
+						</div>
+					</div>
+					<div>
+						<div  id="my" class="embed-responsive embed-responsive-16by9"  >
+						  <iframe name="mainFrame" id="mainFrame" scrolling="no" class="embed-responsive-item" src="./img.html"></iframe>
+						</div>
+					</div>
+					<div>泰国国家</div>
+					<div>关于</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 	回到顶部 -->
+	<div id="go-top" onclick="toTop()">
+		<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span><br>
+		<span class="text">返回<br>顶部</span>
+	</div>
+
+  <script src="./index_files/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="./index_files/bootstrap.min.js"></script>
+
+	<script>
+		window.onload=myInit;
+		function myInit(){
+			var anchors=document.querySelectorAll(".tabLinks a");
+			var i;
+			for(i=0;i<anchors.length;i++){
+				anchors[i].addEventListener("click",show);
+			}	
+			
+		}
+		function show(){
+			var tabLinks=document.querySelectorAll(".tabLinks a");
+			var tabContents=document.querySelectorAll(".tabContents>div");
+			var index;//记录当前元素在tabLinks中的索引位置
+			for(var i=0;i<tabLinks.length;i++){
+				if(tabLinks[i].textContent==this.textContent.trim()) index=i;
+				tabLinks[i].classList.remove("active");
+			}
+			for(var i=0; i<tabContents.length;i++){
+				tabContents[i].style.display="none";
+			}
+			this.classList.add("active");
+			tabContents[index].style.display="block";
+			//iframe自适应高度
+			var iframe = document.getElementById("mainFrame");
+			var myDiv=document.getElementById("my");
+			var iwindow = iframe.contentWindow;
+			var idoc = iwindow.document;
+			myDiv.style.height = idoc.body.offsetHeight+"px";
+			//alert(myDiv.style.height);
+		}
+		window.addEventListener("scroll",showGoTop);
+		function showGoTop(){
+			var toTop=document.getElementById("go-top");
+			 if (document.body.scrollTop>350 || document.documentElement.scrollTop>350){
+				toTop.style.display="block";
+			 }else{
+				toTop.style.display="none";
+			 }
+		}
+		function toTop(){
+//			$('body,html').animate({scrollTop:200},500);
+//			$('body,html').animate({scrollTop:0},800);
+			clearInterval(timer);
+			var target = 0;
+			var timer = setInterval(function () {
+				target = document.body.scrollTop||document.documentElement.scrollTop;
+				target -= Math.ceil(target/15);//做减速运动
+				window.scrollTo(0, target);
+				if (target == 0) {
+					clearInterval(timer);
+				}
+			}, 10);
+
+		}
+  </script>
+ </body>
+</html>
